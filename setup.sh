@@ -8,7 +8,7 @@ sshkey=""
 usrkey=""
 appkey=""
 panel=""
-proxmox=""
+proxmox="" #true or false
 
 # Loop through arguments
 for arg in "$@"; do
