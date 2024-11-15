@@ -3,31 +3,31 @@
 
 ***Make sure to run as root.***
 
-**Prepare server for setup**
+## Prepare server for setup
 
 ```bash
 apt update && apt dist-upgrade -y && apt install git -y
 ```
 
-**Clone repo**
+## Clone repo
 
 ```bash
 git clone https://rigslab.com/Rambo/Server-Setup.git`
 ```
 
-**Make script executable**
+## Make script executable
 
 ```bash
 chmod +x ./Server-Setup/setup.sh
 ```
 
-**Launch server setup**
+## Launch server setup
 
 ```bash
 ./Server-Setup/setup.sh server=SERVERNAME user=USERNAME usrkey=PUSHOVER_USER appkey=PUSHOVER_APP sshkey=YOUR_CLIENT_SSH_KEY
 ```
 
-**Arguments**
+## Arguments
 
 - **server:** Server identifier and hostname
 
