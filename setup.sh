@@ -222,7 +222,7 @@ case $panel in
         #change port to only listen on 127.0.0.1. Will tunnel w/ cloudflare
         sed -i -e 's/-\ 5001:5001/-\ 127.0.0.1:5001:5001/g' /opt/dockge/compose.yaml
         #start dockge
-        docker compose up -f /opt/dockge/compose.yaml -d
+        docker compose -f /opt/dockge/compose.yaml up -d
         ;;
     *)
         echo "No panel chosen."
