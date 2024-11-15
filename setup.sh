@@ -113,6 +113,7 @@ printf "$ST Securing SSH and Generating keys \n $SB"
 sleep $delay
 #change ssh setting to be more secure
 sed -i -e 's/#PermitRootLogin\ prohibit-password/PermitRootLogin\ no/g' /etc/ssh/sshd_config
+sed -i -e 's/PermitRootLogin\ yes/PermitRootLogin\ no/g' /etc/ssh/sshd_config
 sed -i -e 's/#PasswordAuthentication yes/PasswordAuthentication\ no/g' /etc/ssh/sshd_config
 #generate ssh keys
 ssh-keygen
