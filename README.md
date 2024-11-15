@@ -9,22 +9,16 @@
 apt update && apt dist-upgrade -y && apt install git -y
 ```
 
-## Clone repo
+## Copy script to local server
 
 ```bash
-git clone https://rigslab.com/Rambo/Server-Setup.git`
-```
-
-## Make script executable
-
-```bash
-chmod +x ./Server-Setup/setup.sh
+curl https://rigslab.com/Rambo/Server-Setup/raw/branch/main/setup.sh -O setup.sh && chmod +x setup.sh 
 ```
 
 ## Launch server setup
 
 ```bash
-./Server-Setup/setup.sh server=SERVERNAME user=USERNAME usrkey=PUSHOVER_USER appkey=PUSHOVER_APP sshkey=YOUR_CLIENT_SSH_KEY
+./setup.sh server=SERVERNAME user=USERNAME usrkey=PUSHOVER_USER appkey=PUSHOVER_APP sshkey=YOUR_CLIENT_SSH_KEY
 ```
 
 ## Arguments
