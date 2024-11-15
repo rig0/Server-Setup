@@ -60,7 +60,7 @@ apt update && apt dist-upgrade -y
 apt install sudo screen curl ufw openssl rsync cron neofetch -y
 
 # Installing qemu-guest-agent if server is a proxmox machine
-if [[ $proxmox ]]; then
+if [[ -n $proxmox ]]; then
   apt install qemu-guest-agent
 fi
 
