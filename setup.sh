@@ -8,6 +8,7 @@ sshkey=""
 usrkey=""
 appkey=""
 panel=""
+proxmox=""
 
 # Loop through arguments
 for arg in "$@"; do
@@ -29,6 +30,9 @@ for arg in "$@"; do
       ;;
     panel=*) #control panel (optional)
       panel="${arg#*=}"
+      ;;
+    proxmox=*) #proxmox machine (optional)
+      proxmox="${arg#*=}"
       ;;
     *)
       # Ignore unknown arguments or handle them as needed
@@ -54,6 +58,11 @@ printf "$ST Updating OS & Installing prerequisits \n $SB"
 sleep $delay
 apt update && apt dist-upgrade -y
 apt install sudo screen curl ufw openssl rsync cron neofetch -y
+
+# Installing qemu-guest-agent if server is a proxmox machine
+if [[ $proxmox ]]; then
+  apt install qemu-guest-agent
+fi
 
 printf "$ST Creating Main User. Set your password: \n $SB"
 sleep $delay
@@ -98,9 +107,6 @@ if [[ -n $usrkey ]]; then
         chmod +x /usr/bin/authee
         echo "#LOGIN NOTIFICATION SCRIPT" >> /home/$user/.bashrc
         echo "bash authee" >> /home/$user/.bashrc
-        echo "#TABBY WORKING DIR SCRIPT" >> /home/$user/.bashrc
-        echo "export PS1=\"\$PS1\[\e]1337;CurrentDir=\"'/home/$user\a\]'" >> /home/$user/.bashrc
-        echo "Done."
 fi
 
 printf "$ST Securing SSH and Generating keys \n $SB"
@@ -129,6 +135,12 @@ printf "$ST Configuring and enabling Firewall \n $SB"
 sleep $delay
 ufw allow 22/tcp
 ufw enable
+
+printf "$ST Configuring Tabby env variables \n $SB"
+sleep $delay
+echo "#TABBY WORKING DIR SCRIPT" >> /home/$user/.bashrc
+echo "export PS1=\"\$PS1\[\e]1337;CurrentDir=\"'/home/$user\a\]'" >> /home/$user/.bashrc
+echo "Done."
 
 # Check for panel option
 case $panel in
