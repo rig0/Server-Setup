@@ -6,7 +6,7 @@
 ## Prepare server for setup
 
 ```bash
-apt update && apt dist-upgrade -y && apt install git -y
+apt update && apt dist-upgrade -y && apt install curl git -y
 ```
 
 ## Copy script to local server
