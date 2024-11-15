@@ -52,8 +52,8 @@ delay=2 # delay in seconds after showing step
 
 printf "$ST Updating OS & Installing prerequisits \n $SB"
 sleep $delay
-apt update && apt upgrade -y
-apt install sudo screen curl ufw wget openssl -y
+apt update && apt dist-upgrade -y
+apt install sudo screen curl ufw openssl rsync cron neofetch -y
 
 printf "$ST Creating Main User. Set your password: \n $SB"
 sleep $delay
@@ -67,7 +67,8 @@ hostnamectl set-hostname $server
 # Check if pushover options were passed
 if [[ -n $usrkey ]]; then
         #get server ip
-        ip=$(curl -s https://ipinfo.io/ip)
+        #ip=$(curl -s https://ipinfo.io/ip) #public ip only
+        ip=$(ip route get 8.8.8.8 | awk '/src/ {print $7}')
 
         #pushover notification options
         PO_USER_KEY=$usrkey
@@ -105,7 +106,7 @@ fi
 printf "$ST Securing SSH and Generating keys \n $SB"
 sleep $delay
 #change ssh setting to be more secure
-sed -i -e 's/PermitRootLogin\ prohibit-password/PermitRootLogin\ no/g' /etc/ssh/sshd_config
+sed -i -e 's/#PermitRootLogin\ prohibit-password/PermitRootLogin\ no/g' /etc/ssh/sshd_config
 sed -i -e 's/#PasswordAuthentication yes/PasswordAuthentication\ no/g' /etc/ssh/sshd_config
 #generate ssh keys
 ssh-keygen
@@ -126,7 +127,7 @@ sysctl -w net.ipv6.conf.all.disable_ipv6=1
 
 printf "$ST Configuring and enabling Firewall \n $SB"
 sleep $delay
-ufw allow 22/tcp #new ssh port
+ufw allow 22/tcp
 ufw enable
 
 # Check for panel option
@@ -198,6 +199,7 @@ esac
 
 printf "\n${BLUE}----------------------------------------------------------------------\n\n"
 printf "Server Setup Complete! \n$SB"
+neofetch
 
 if [[ -n $usrkey ]]; then
   pushover "Server Setup Complete" #send notification
