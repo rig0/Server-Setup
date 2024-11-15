@@ -204,6 +204,26 @@ case $panel in
         echo "* hard nofile 1000000" >> /etc/security/limits.conf
         echo "session required pam_limits.so" >> /etc/pam.d/common-session
         ;;
+    dockge)
+        printf "$ST Installing Docker & Dockge \n $SB"
+        sleep $delay
+        #install docker
+        #apt install docker
+        curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+        chmod a+r /etc/apt/keyrings/docker.asc
+        echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+        $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        apt update
+        apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        usermod -aG docker $user
+        #install dockge
+        mkdir -p /opt/dockge /opt/stacks
+        curl "https://dockge.kuma.pet/compose.yaml?port=5001&stacksPath=%2Fopt%2Fstacks" --output /opt/stacks/compose.yaml
+        #change port to only listen on 127.0.0.1. Will tunnel w/ cloudflare
+        sed -i -e 's/-\ 5001:5001/-\ 127.0.0.1:5001:5001/g' /etc/ssh/sshd_config
+        #start dockge
+        docker compose up -d -f /opt/dockge/compose.yaml
+        ;;
     *)
         echo "No panel chosen."
         ;;
