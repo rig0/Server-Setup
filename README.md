@@ -1,7 +1,6 @@
 # Server Setup
-*A re-upload of an old script*
 
-***Make sure to run as root.***
+***Must be ran as root***
 
 ## Prepare server for setup
 
@@ -18,21 +17,21 @@ curl https://rigslab.com/Rambo/Server-Setup/raw/branch/main/setup.sh -O setup.sh
 ## Launch server setup
 
 ```bash
-./setup.sh server=SERVERNAME user=USERNAME usrkey=PUSHOVER_USER appkey=PUSHOVER_APP sshkey=YOUR_CLIENT_SSH_KEY
+./setup.sh hostname=HOSTNAME user=USERNAME
 ```
 
 ## Arguments
 
-- **server:** Server identifier and hostname
+- **hostname:** Hostname
 
 - **user:** User to be created with sudo privelages
 
-- **sshkey:** Your ssh client public sshkey 
+- *sshkey*:* Your ssh client public sshkey 
 
 - *usrkey*:* Pushover user api key
 
 - *appkey*:* Pushover app api key
 
-- *panel*:* Control panel to install (cloudpanel, tinycp, webmin, openvpn, steam)
+- *panel*:* Control panel to install (cloudpanel, tinycp, webmin, dockge, openvpn, steam)
 
 *= Optional
