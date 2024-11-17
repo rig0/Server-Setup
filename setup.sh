@@ -59,7 +59,7 @@ SB="\n----------------------------------------------------------------------\n\n
 
 printf "$ST Updating OS & Installing prerequisites \n $SB"
 apt update && apt dist-upgrade -y
-apt install sudo screen curl ufw openssl rsync cron neofetch -y
+apt install sudo screen curl git ufw openssl rsync cron neofetch -y
 
 # Installing qemu-guest-agent if server is a proxmox machine
 if [[ "$proxmox" -eq 1 ]]; then
