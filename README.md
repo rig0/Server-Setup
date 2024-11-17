@@ -1,6 +1,6 @@
 # Server Setup
 
-***Must be ran as root***
+***Must be ran as root on a fresh installation***
 
 ## Copy and Install
 
@@ -20,6 +20,8 @@ curl -O https://rigslab.com/Rambo/Server-Setup/raw/branch/main/setup.sh && chmod
 
 - *appkey*:* Pushover app api key
 
-- *panel*:* Control panel to install (cloudpanel, tinycp, webmin, dockge, openvpn, steam)
+- *panel*:* Software to install (cloudpanel, tinycp, webmin, dockge, openvpn, steam)
+
+- *proxmox*:* 1 if system is a proxmox virtual machine
 
 *= Optional
