@@ -65,7 +65,8 @@ Installs [OpenVPN](https://rigslab.com/Rambo/OpenVPN-Installer)
 Installs steamcmd and adjust system setttings to play nice with game servers
 
 
-## To Do (maybe):
+## To Do:
 - Make cloudpanel install dynamic
+- Make user creation optional for the scenario where a user is pre configured and root has been pre disabled
 - Make tabby envs optional (ex. tabby=1)
 - Make motd and vanity stuff optional (ex. vanity=1)
