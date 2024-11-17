@@ -2,22 +2,10 @@
 
 ***Must be ran as root***
 
-## Prepare server for setup
+## Copy and Install
 
 ```bash
-apt update && apt dist-upgrade -y && apt install curl git -y
-```
-
-## Copy script to local server
-
-```bash
-curl https://rigslab.com/Rambo/Server-Setup/raw/branch/main/setup.sh -O setup.sh && chmod +x setup.sh 
-```
-
-## Launch server setup
-
-```bash
-./setup.sh hostname=HOSTNAME user=USERNAME
+curl -O https://rigslab.com/Rambo/Server-Setup/raw/branch/main/setup.sh && chmod +x setup.sh && ./setup.sh hostname=HOSTNAME user=USERNAME
 ```
 
 ## Arguments
