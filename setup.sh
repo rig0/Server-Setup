@@ -49,8 +49,7 @@ if [[ -z $user || -z $hostname ]]; then
   exit 1
 fi
 
-#Bash styling
-#BLUE='\033[1;36m'
+# Bash Styling
 YELLOW='\033[1;33m'
 NC='\033[0m' # no color
 ST="\n${YELLOW}----------------------------------------------------------------------\n\n"
@@ -145,7 +144,6 @@ printf "$ST Configuring Tabby env variables \n $SB"
 echo "#TABBY WORKING DIR SCRIPT" >> /home/$user/.bashrc
 echo "export PS1=\"\$PS1\[\e]1337;CurrentDir=\"'/home/$user\a\]'" >> /home/$user/.bashrc
 echo "Done."
-
 
 printf "$ST Customizing motd \n $SB"
 
